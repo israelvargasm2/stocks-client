@@ -1,0 +1,5 @@
+<div class="container">
+    <h1 class="text-center my-2">Administrador</h1>
+    <button mat-raised-button routerLink="/administrator/stocks/create">Crear nuevo registro</button>
+    <app-stocks-table [stocks]="stocks" (deleteStock)="deleteStock($event)"></app-stocks-table>
+</div>
