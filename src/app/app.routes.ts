@@ -14,5 +14,5 @@ export const routes: Routes = [
     { path: "administrator", component: AdministratorComponent, canActivate: [authenticationGuard] },
     { path: "administrator/stocks/create", component: CreateStockComponent, canActivate: [authenticationGuard] },
     { path: "administrator/stocks/edit/:id", component: EditStockComponent, canActivate: [authenticationGuard] },
-    { path: "login", component: LoginComponent }, 
+    { path: "login", component: LoginComponent },
 ];
