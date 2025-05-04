@@ -11,5 +11,5 @@ export const routes: Routes = [
     { path: "dashboard", component: DashboardComponent },
     { path: "administrator", component: AdministratorComponent },
     { path: "administrator/stocks/create", component: CreateStockComponent }, 
-    { path: "administrator/stocks/edit/:id", component: EditStockComponent }, 
+    { path: "administrator/stocks/edit/:id", component: EditStockComponent },
 ];
