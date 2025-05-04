@@ -1,0 +1,25 @@
+<div class="container">
+    <form [formGroup]="loginForm">
+        <div class="row">
+            <div class="col">
+                <mat-form-field>
+                    <mat-label>Usuario</mat-label>
+                    <input matInput type="text" formControlName="username">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <mat-form-field>
+                    <mat-label>Contraseña</mat-label>
+                    <input matInput type="password" formControlName="password">
+                </mat-form-field>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <button mat-raised-button (click)="login()">Iniciar sesion</button>
+            </div>
+        </div>
+    </form>
+</div>
