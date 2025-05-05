@@ -6,11 +6,13 @@ import { StockFromApiService } from '../../core/stocks-from-api/stock-from-api.s
 import { StockFromApi } from '../../core/stocks-from-api/stock-from-api';
 import { StockUnderAnalysis } from '../../core/stocks-under-analysis/stock-under-analysis';
 import { DashboardTableComponent } from '../dashboard-table/dashboard-table.component';
+import { ProgressSpinnerComponent } from '../progress-spinner/progress-spinner.component';
 
 @Component({
   selector: 'app-dashboard',
   imports: [
-    DashboardTableComponent
+    DashboardTableComponent,
+    ProgressSpinnerComponent
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
@@ -19,6 +21,7 @@ export class DashboardComponent implements OnInit {
   stocks: Stock[] = [];
   stocksFromApi: StockFromApi[] = [];
   stocksUnderAnalysis: StockUnderAnalysis[] = [];
+  showProgressSpinner: boolean = false;
 
   constructor(
     private readonly stockService: StockService,
@@ -26,6 +29,7 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.showProgressSpinner = true;
     forkJoin({
       stocks: this.stockService.getAllStocks()
     }).pipe().subscribe({
@@ -63,5 +67,6 @@ export class DashboardComponent implements OnInit {
         capitalGainPercentage: parseFloat((((totalPrice - stock.mount) * 100) / stock.mount).toFixed(2))
       });
     }
+    this.showProgressSpinner = false;
   }
 }

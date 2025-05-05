@@ -20,6 +20,9 @@
             <div class="col">
                 <button mat-raised-button (click)="login()">Iniciar sesion</button>
             </div>
+            <div class="col">
+                <app-progress-spinner [show]="showProgressSpinner"></app-progress-spinner>
+            </div>
         </div>
     </form>
 </div>
