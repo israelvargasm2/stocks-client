@@ -75,6 +75,6 @@ export class DashboardComponent implements OnInit {
   }
 
   getTotalCapitalGain() {
-    this.totalCapitalGain = this.stocksUnderAnalysis.map(item => item.capitalGain).reduce((acc, curr) => acc + curr, 0);
+    this.totalCapitalGain = parseFloat(this.stocksUnderAnalysis.map(item => item.capitalGain).reduce((acc, curr) => acc + curr, 0).toFixed(2));
   }
 }
