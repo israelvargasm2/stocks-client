@@ -7,12 +7,14 @@ import { StockFromApi } from '../../core/stocks-from-api/stock-from-api';
 import { StockUnderAnalysis } from '../../core/stocks-under-analysis/stock-under-analysis';
 import { DashboardTableComponent } from '../dashboard-table/dashboard-table.component';
 import { ProgressSpinnerComponent } from '../progress-spinner/progress-spinner.component';
+import {MatCardModule} from '@angular/material/card';
 
 @Component({
   selector: 'app-dashboard',
   imports: [
     DashboardTableComponent,
-    ProgressSpinnerComponent
+    ProgressSpinnerComponent, 
+    MatCardModule, 
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'
@@ -22,6 +24,7 @@ export class DashboardComponent implements OnInit {
   stocksFromApi: StockFromApi[] = [];
   stocksUnderAnalysis: StockUnderAnalysis[] = [];
   showProgressSpinner: boolean = false;
+  totalCapitalGain: number = 0;
 
   constructor(
     private readonly stockService: StockService,
@@ -67,6 +70,11 @@ export class DashboardComponent implements OnInit {
         capitalGainPercentage: parseFloat((((totalPrice - stock.mount) * 100) / stock.mount).toFixed(2))
       });
     }
+    this.getTotalCapitalGain();
     this.showProgressSpinner = false;
+  }
+
+  getTotalCapitalGain() {
+    this.totalCapitalGain = this.stocksUnderAnalysis.map(item => item.capitalGain).reduce((acc, curr) => acc + curr, 0);
   }
 }
