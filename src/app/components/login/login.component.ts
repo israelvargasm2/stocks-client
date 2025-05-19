@@ -34,7 +34,7 @@ export class LoginComponent {
     this.showProgressSpinner = true;
     this.authenticationService.login(this.loginForm.get("username")?.value as string, this.loginForm.get("password")?.value as string).subscribe({
       next: (res) => {
-        this.router.navigate(["/home"]);
+        this.router.navigate(["/dashboard"]);
       }, complete: () => {
         this.showProgressSpinner = false;
       }

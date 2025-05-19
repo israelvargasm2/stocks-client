@@ -7,14 +7,14 @@ import { StockFromApi } from '../../core/stocks-from-api/stock-from-api';
 import { StockUnderAnalysis } from '../../core/stocks-under-analysis/stock-under-analysis';
 import { DashboardTableComponent } from '../dashboard-table/dashboard-table.component';
 import { ProgressSpinnerComponent } from '../progress-spinner/progress-spinner.component';
-import {MatCardModule} from '@angular/material/card';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-dashboard',
   imports: [
     DashboardTableComponent,
-    ProgressSpinnerComponent, 
-    MatCardModule, 
+    ProgressSpinnerComponent,
+    MatCardModule,
   ],
   templateUrl: './dashboard.component.html',
   styleUrl: './dashboard.component.css'

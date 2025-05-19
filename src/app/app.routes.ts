@@ -8,7 +8,7 @@ import { authenticationGuard } from './core/authentication/authentication.guard'
 import { LoginComponent } from './components/login/login.component';
 
 export const routes: Routes = [
-    { path: "", redirectTo: "login", pathMatch: "full" },
+    { path: "", redirectTo: "dashboard", pathMatch: "full" },
     { path: "home", component: HomeComponent, canActivate: [authenticationGuard] },
     { path: "dashboard", component: DashboardComponent, canActivate: [authenticationGuard] },
     { path: "administrator", component: AdministratorComponent, canActivate: [authenticationGuard] },
