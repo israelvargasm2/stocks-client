@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { Stock } from '../../core/stocks/stock';
 import { StockService } from '../../core/stocks/stock.service';
 import { forkJoin } from 'rxjs';
@@ -8,6 +8,7 @@ import { StockUnderAnalysis } from '../../core/stocks-under-analysis/stock-under
 import { DashboardTableComponent } from '../dashboard-table/dashboard-table.component';
 import { ProgressSpinnerComponent } from '../progress-spinner/progress-spinner.component';
 import { MatCardModule } from '@angular/material/card';
+import { HeaderService } from '../header/header.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -20,11 +21,15 @@ import { MatCardModule } from '@angular/material/card';
   styleUrl: './dashboard.component.css'
 })
 export class DashboardComponent implements OnInit {
+  private readonly headerService = inject(HeaderService);
+
   stocks: Stock[] = [];
   stocksFromApi: StockFromApi[] = [];
   stocksUnderAnalysis: StockUnderAnalysis[] = [];
   showProgressSpinner: boolean = false;
   totalCapitalGain: number = 0;
+  totalCapitalGainPercentage: number = 0;
+  totalMount: number = 0;
 
   constructor(
     private readonly stockService: StockService,
@@ -32,6 +37,7 @@ export class DashboardComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    this.headerService.show = true;
     this.showProgressSpinner = true;
     forkJoin({
       stocks: this.stockService.getAllStocks()
@@ -66,15 +72,26 @@ export class DashboardComponent implements OnInit {
         quantity: stock.quantity,
         mount: stock.mount,
         price,
+        totalPrice: parseFloat(totalPrice.toFixed(2)),
         capitalGain: parseFloat((totalPrice - stock.mount).toFixed(2)),
         capitalGainPercentage: parseFloat((((totalPrice - stock.mount) * 100) / stock.mount).toFixed(2))
       });
     }
     this.getTotalCapitalGain();
+    this.getTotalCapitalGainPercentage();
+    this.getTotalMount();
     this.showProgressSpinner = false;
   }
 
   getTotalCapitalGain() {
     this.totalCapitalGain = parseFloat(this.stocksUnderAnalysis.map(item => item.capitalGain).reduce((acc, curr) => acc + curr, 0).toFixed(2));
+  }
+
+  getTotalCapitalGainPercentage() {
+    this.totalCapitalGainPercentage = parseFloat((this.totalCapitalGain / this.stocksUnderAnalysis.map(item => item.totalPrice).reduce((acc, curr) => acc + curr, 0) * 100).toFixed(2));
+  }
+
+  getTotalMount() {
+    this.totalMount = parseFloat(this.stocksUnderAnalysis.map(item => item.mount).reduce((acc, curr) => acc + curr, 0).toFixed(2));
   }
 }

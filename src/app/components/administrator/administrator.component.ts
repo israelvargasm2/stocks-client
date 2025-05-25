@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { StocksTableComponent } from '../stocks-table/stocks-table.component';
 import { Stock } from '../../core/stocks/stock';
 import { StockService } from '../../core/stocks/stock.service';
@@ -17,11 +17,9 @@ import { RouterLink } from '@angular/router';
   styleUrl: './administrator.component.css'
 })
 export class AdministratorComponent implements OnInit {
-  stocks: Stock[] = [];
+  private readonly stockService = inject(StockService);
 
-  constructor(
-    private readonly stockService: StockService,
-  ) { }
+  stocks: Stock[] = [];
 
   ngOnInit(): void {
     forkJoin({
@@ -35,7 +33,7 @@ export class AdministratorComponent implements OnInit {
 
   deleteStock(id: number) {
     this.stockService.deleteStock(id).subscribe({
-      next: (res) => {
+      next: () => {
         this.stockService.getAllStocks().subscribe({
           next: (res) => {
             this.stocks = res;

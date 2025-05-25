@@ -33,6 +33,7 @@ export class DashboardTableComponent implements OnChanges {
       quantity: 0,
       mount: 0,
       price: 0,
+      totalPrice: 0,
       capitalGain: 0,
       capitalGainPercentage: 0
     };
@@ -52,6 +53,8 @@ export class DashboardTableComponent implements OnChanges {
         return "Monto invertido";
       case "price":
         return "Precio en mercado";
+      case "totalPrice":
+        return "Inversion total";
       case "capitalGain":
         return "Plusvalia";
       case "capitalGainPercentage":

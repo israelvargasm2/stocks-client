@@ -1,28 +1,34 @@
 <div class="container">
-    <form [formGroup]="loginForm">
-        <div class="row">
-            <div class="col">
-                <mat-form-field>
-                    <mat-label>Usuario</mat-label>
-                    <input matInput type="text" formControlName="username">
-                </mat-form-field>
-            </div>
+    <div class="vh-100 d-flex justify-content-center align-items-center">
+        <div>
+            <h2 class="mb-4">Iniciar de sesión</h2>
+            <form [formGroup]="loginForm" (submit)="login()">
+                <div class="row my-2">
+                    <div class="col d-flex justify-content-center">
+                        <mat-form-field>
+                            <mat-label>Usuario</mat-label>
+                            <input matInput type="text" formControlName="username">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row my-2">
+                    <div class="col d-flex justify-content-center">
+                        <mat-form-field>
+                            <mat-label>Contraseña</mat-label>
+                            <input matInput type="password" formControlName="password">
+                        </mat-form-field>
+                    </div>
+                </div>
+                <div class="row my-2">
+                    <div class="col d-flex justify-content-center">
+                        @if (isLoading) {
+                        <button mat-raised-button type="button">Iniciando sesión</button>
+                        } @else {
+                        <button mat-raised-button type="submit">Iniciar sesion</button>
+                        }
+                    </div>
+                </div>
+            </form>
         </div>
-        <div class="row">
-            <div class="col">
-                <mat-form-field>
-                    <mat-label>Contraseña</mat-label>
-                    <input matInput type="password" formControlName="password">
-                </mat-form-field>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <button mat-raised-button (click)="login()">Iniciar sesion</button>
-            </div>
-            <div class="col">
-                <app-progress-spinner [show]="showProgressSpinner"></app-progress-spinner>
-            </div>
-        </div>
-    </form>
+    </div>
 </div>

@@ -1,6 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { AuthenticationService } from '../../core/authentication/authentication.service';
+import { HeaderService } from './header.service';
 
 @Component({
   selector: 'app-header',
@@ -11,7 +12,8 @@ import { AuthenticationService } from '../../core/authentication/authentication.
   styleUrl: './header.component.css'
 })
 export class HeaderComponent {
-    readonly authenticationService = inject(AuthenticationService);
+    private readonly authenticationService = inject(AuthenticationService);
+    public readonly headerService = inject(HeaderService);
 
     logout() {
       this.authenticationService.logout();
