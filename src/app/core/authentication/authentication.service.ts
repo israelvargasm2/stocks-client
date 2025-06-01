@@ -13,11 +13,12 @@ export class AuthenticationService {
   private loggedIn = new BehaviorSubject<boolean>(this.hasToken());
 
   login(username: string, password: string) {
-    return this.httpClient.post<{ access_token: string }>(`${environment.projectApi}/authentication`, { username, password })
+    return this.httpClient.post<{ access_token: string; user: string; }>(`${environment.projectApi}/authentication`, { username, password })
     .pipe(
       tap({
         next: (res) => {
           localStorage.setItem("token", res.access_token);
+          localStorage.setItem("user", res.user);
           this.loggedIn.next(true);
         }
       })
@@ -26,6 +27,7 @@ export class AuthenticationService {
 
   logout() {
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
     this.loggedIn.next(false);
     this.router.navigate(["/login"]);
   }

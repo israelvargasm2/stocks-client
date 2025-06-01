@@ -54,7 +54,7 @@ export class DashboardTableComponent implements OnChanges {
       case "price":
         return "Precio en mercado";
       case "totalPrice":
-        return "Inversion total";
+        return "Precio total en mercado";
       case "capitalGain":
         return "Plusvalia";
       case "capitalGainPercentage":
@@ -66,21 +66,21 @@ export class DashboardTableComponent implements OnChanges {
 
   setClassToCapitalGain(capitalGain: number) {
     if (capitalGain > 0) {
-      return "capitalGainPlus";
+      return "green-text";
     } else if (capitalGain < 0) {
-      return "capitalGainMinus";
+      return "red-text";
     } else {
-      return "capitalGainZero";
+      return "gray-text";
     }
   }
 
   setClassToCapitalGainPercentage(capitalGain: number) {
     if (capitalGain > 0) {
-      return "capitalGainPercentagePlus";
+      return "green-box";
     } else if (capitalGain < 0) {
-      return "capitalGainPercentageMinus";
+      return "red-box";
     } else {
-      return "capitalGainPercentageZero";
+      return "gray-box";
     }
   }
 }

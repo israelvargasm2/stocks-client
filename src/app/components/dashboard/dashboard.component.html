@@ -7,7 +7,7 @@
                 <mat-card-content>
                     <div class="d-flex flex-column">
                         <div class="d-flex justify-content-center">
-                            <span>Inversion total</span>
+                            <span>Monto total invertido</span>
                         </div>
                         <div class="d-flex justify-content-center">
                             <span style="font-size: xx-large;">{{totalMount}} $</span>
@@ -18,7 +18,7 @@
         </div>
         <div class="col my-2" style="min-width: 300px;">
             <mat-card appearance="outlined">
-                <mat-card-content>
+                <mat-card-content [class]="getClassForCard(totalCapitalGain)">
                     <div class="d-flex flex-column">
                         <div class="d-flex justify-content-center">
                             <span>Plusvalia</span>
@@ -32,7 +32,7 @@
         </div>
         <div class="col my-2" style="min-width: 300px;">
             <mat-card appearance="outlined">
-                <mat-card-content>
+                <mat-card-content [class]="getClassForCard(totalCapitalGainPercentage)">
                     <div class="d-flex flex-column">
                         <div class="d-flex justify-content-center">
                             <span>Plusvalia en porcentaje</span>
@@ -45,7 +45,7 @@
             </mat-card>
         </div>
     </div>
-    <div style="overflow-y: auto;">
+    <div class="my-3" style="overflow-y: auto;">
         <app-dashboard-table [stocksUnderAnalysis]="stocksUnderAnalysis"></app-dashboard-table>
     </div>
     } @else {

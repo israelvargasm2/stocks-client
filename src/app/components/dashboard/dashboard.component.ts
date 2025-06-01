@@ -94,4 +94,14 @@ export class DashboardComponent implements OnInit {
   getTotalMount() {
     this.totalMount = parseFloat(this.stocksUnderAnalysis.map(item => item.mount).reduce((acc, curr) => acc + curr, 0).toFixed(2));
   }
+
+  getClassForCard(value: number) {
+    if (value > 0) {
+      return "green-box";
+    } else if (value < 0) {
+      return "red-box";
+    } else {
+      return "gray-box";
+    }
+  }
 }

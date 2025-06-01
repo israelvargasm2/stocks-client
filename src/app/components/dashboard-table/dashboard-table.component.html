@@ -4,7 +4,7 @@
         <th mat-header-cell *matHeaderCellDef>{{getColumDisplayName(column)}}</th>
         <td mat-cell *matCellDef="let stockUnderAnalysis">
             @if (column === "capitalGain") {
-            <span [className]="setClassToCapitalGain(stockUnderAnalysis[column])">{{stockUnderAnalysis[column]}}
+            <span [className]="setClassToCapitalGain(stockUnderAnalysis[column])">{{stockUnderAnalysis[column]}} $
             </span>
             } @else if (column === "capitalGainPercentage") {
             <span [className]="setClassToCapitalGainPercentage(stockUnderAnalysis[column])">{{stockUnderAnalysis[column]}}%

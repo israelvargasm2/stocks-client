@@ -2,3 +2,39 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.green-text {
+    color: green; 
+    font-weight: bold;
+}
+
+.red-text {
+    color: red; 
+    font-weight: bold;
+}
+
+.gray-text {
+    color: rgb(77, 77, 77); 
+    font-weight: bold;
+}
+
+.green-box {
+    color: green; 
+    background-color: rgb(216, 255, 216);
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.red-box {
+    color: red; 
+    background-color: rgb(255, 209, 209);
+    padding: 8px;
+    border-radius: 5px;
+}
+
+.gray-box {
+    color: rgb(77, 77, 77); 
+    background-color: rgb(220, 220, 220);
+    padding: 8px;
+    border-radius: 5px;
+}

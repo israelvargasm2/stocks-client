@@ -18,4 +18,8 @@ export class HeaderComponent {
     logout() {
       this.authenticationService.logout();
     }
+
+    getUser() {
+      return localStorage.getItem("user");
+    }
 }
