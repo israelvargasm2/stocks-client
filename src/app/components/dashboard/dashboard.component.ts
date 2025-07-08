@@ -88,7 +88,7 @@ export class DashboardComponent implements OnInit {
   }
 
   getTotalCapitalGainPercentage() {
-    this.totalCapitalGainPercentage = parseFloat((this.totalCapitalGain / this.stocksUnderAnalysis.map(item => item.totalPrice).reduce((acc, curr) => acc + curr, 0) * 100).toFixed(2));
+    this.totalCapitalGainPercentage = parseFloat((this.totalCapitalGain / this.stocksUnderAnalysis.map(item => item.mount).reduce((acc, curr) => acc + curr, 0) * 100).toFixed(2));
   }
 
   getTotalMount() {
