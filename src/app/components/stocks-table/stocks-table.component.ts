@@ -42,10 +42,12 @@ export class StocksTableComponent implements OnChanges {
       id: 0,
       name: "",
       quantity: 0,
-      mount: 0
+      mount: 0,
+      userId: 0
     };
     this.columns = Object.keys(stock);
-    this.columns.push("actions")
+    this.columns.pop();
+    this.columns.push("actions");
     this.dataSource = new MatTableDataSource(this.stocks);
     this.dataSource.paginator = this.paginator as MatPaginator;
   }

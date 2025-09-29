@@ -23,7 +23,7 @@ export class AdministratorComponent implements OnInit {
 
   ngOnInit(): void {
     forkJoin({
-      stocks: this.stockService.getAllStocks()
+      stocks: this.stockService.getStocksByUser(parseInt(localStorage.getItem("userId") as string))
     }).subscribe({
       next: (responses) => {
         this.stocks = responses.stocks;
@@ -34,7 +34,7 @@ export class AdministratorComponent implements OnInit {
   deleteStock(id: number) {
     this.stockService.deleteStock(id).subscribe({
       next: () => {
-        this.stockService.getAllStocks().subscribe({
+        this.stockService.getStocksByUser(parseInt(localStorage.getItem("userId") as string)).subscribe({
           next: (res) => {
             this.stocks = res;
           }

@@ -24,11 +24,16 @@
                         @if (isLoading) {
                         <button mat-raised-button type="button" disabled>Iniciando sesión</button>
                         } @else {
-                        <button mat-raised-button type="submit">Iniciar sesion</button>
+                        <button mat-raised-button type="submit" disabled>Iniciar sesion</button>
                         }
                     </div>
                 </div>
             </form>
+            <div id="google-btn" class="d-flex justify-content-center">
+                <button mat-fab type="button">
+                    <img src="images/google-logo-64x64.png" alt="v1" height="32">
+                </button>
+            </div>
         </div>
     </div>
 </div>

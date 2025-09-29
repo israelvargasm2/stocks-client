@@ -3,4 +3,5 @@ export interface Stock {
     name: string;
     quantity: number;
     mount: number;
+    userId: number;
 }

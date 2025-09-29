@@ -16,6 +16,10 @@ export class StockService {
     return this.httpClient.get<Stock[]>(`${environment.projectApi}/stocks`);
   }
 
+  getStocksByUser(userId: number) {
+    return this.httpClient.get<Stock[]>(`${environment.projectApi}/stocks/get-by-user/${userId}`);
+  }
+
   getStock(id: number) {
     return this.httpClient.get<Stock>(`${environment.projectApi}/stocks/${id}`);
   }

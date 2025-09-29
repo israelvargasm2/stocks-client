@@ -23,7 +23,8 @@ export class EditStockComponent implements OnInit {
     id: 0,
     name: "",
     quantity: 0,
-    mount: 0
+    mount: 0,
+    userId: 0
   });
 
   readonly stockService = inject(StockService);
