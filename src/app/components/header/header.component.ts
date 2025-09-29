@@ -22,4 +22,8 @@ export class HeaderComponent {
     getUser() {
       return localStorage.getItem("email");
     }
+
+    getPhoto() {
+      return localStorage.getItem("photo");
+    }
 }

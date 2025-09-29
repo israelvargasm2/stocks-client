@@ -23,9 +23,10 @@
           <button class="nav-link" (click)="logout()">Cerrar sesion</button>
         </li>
       </ul>
-      <span class="navbar-text">
+      <span class="navbar-text me-1">
         {{getUser()}}
       </span>
+      <img [src]="getPhoto()" alt="v1" height="48">
     </div>
   </div>
 </nav>

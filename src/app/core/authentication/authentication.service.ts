@@ -50,6 +50,7 @@ export class AuthenticationService {
             localStorage.setItem("token", res.access_token);
             localStorage.setItem("userId", res.user.id);
             localStorage.setItem("email", res.user.email);
+            localStorage.setItem('photo', res.user.picture);
             this.loggedIn.next(true);
           }
         })
@@ -60,6 +61,7 @@ export class AuthenticationService {
     localStorage.removeItem('token');
     localStorage.removeItem('userId');
     localStorage.removeItem('email');
+    localStorage.removeItem('photo');
     this.loggedIn.next(false);
     this.router.navigate(["/login"]);
   }
