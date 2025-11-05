@@ -20,6 +20,10 @@ export class HeaderComponent {
     }
 
     getUser() {
-      return localStorage.getItem("user");
+      return localStorage.getItem("email");
+    }
+
+    getPhoto() {
+      return localStorage.getItem("photo");
     }
 }

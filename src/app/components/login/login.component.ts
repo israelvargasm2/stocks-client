@@ -6,9 +6,9 @@ import { MatInputModule } from '@angular/material/input';
 import { AuthenticationService } from '../../core/authentication/authentication.service';
 import { Router } from '@angular/router';
 import { HeaderService } from '../header/header.service';
-import { HttpErrorResponse } from '@angular/common/http';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { SnackbarComponent } from '../snackbar/snackbar.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faG } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-login',
@@ -17,6 +17,7 @@ import { SnackbarComponent } from '../snackbar/snackbar.component';
     MatFormFieldModule,
     MatInputModule,
     MatButtonModule,
+    FontAwesomeModule,
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
@@ -27,19 +28,33 @@ export class LoginComponent implements OnInit {
     password: "",
   });
 
+  faG = faG;
+
   private readonly authenticationService = inject(AuthenticationService);
   private readonly router = inject(Router);
   private readonly headerService = inject(HeaderService);
-  private readonly _snackBar  = inject(MatSnackBar);
 
   isLoading: boolean = false;
 
   ngOnInit(): void {
+    this.loginForm.get("username")?.disable();
+    this.loginForm.get("password")?.disable();
     this.headerService.show = false;
   }
 
+  ngAfterViewInit(): void {
+    this.authenticationService.initializeLoginButton((jwt: string) => {
+      // Mandar token a NestJS
+      this.authenticationService.sendTokenToBackend(jwt).subscribe({
+        next: (res) => {
+          this.router.navigate(["/dashboard"]);
+        }
+      });
+    });
+  }
+
   login() {
-    this.isLoading = true;
+    /*this.isLoading = true;
     this.authenticationService.login(this.loginForm.get("username")?.value as string, this.loginForm.get("password")?.value as string).subscribe({
       next: (res) => {
         this.router.navigate(["/dashboard"]);
@@ -53,6 +68,6 @@ export class LoginComponent implements OnInit {
         }
         this.isLoading = false;
       }
-    });
+    });*/
   }
 }

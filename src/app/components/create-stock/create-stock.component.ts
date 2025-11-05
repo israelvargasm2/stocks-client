@@ -23,7 +23,8 @@ export class CreateStockComponent {
     id: 0,
     name: "",
     quantity: 0,
-    mount: 0
+    mount: 0,
+    userId: parseInt(localStorage.getItem("userId") as string)
   });
 
   readonly stockService = inject(StockService);

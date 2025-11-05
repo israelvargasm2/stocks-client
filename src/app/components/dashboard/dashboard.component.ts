@@ -40,7 +40,7 @@ export class DashboardComponent implements OnInit {
     this.headerService.show = true;
     this.showProgressSpinner = true;
     forkJoin({
-      stocks: this.stockService.getAllStocks()
+      stocks: this.stockService.getStocksByUser(parseInt(localStorage.getItem("userId") as string))
     }).pipe().subscribe({
       next: (responses) => {
         this.stocks = responses.stocks;
